@@ -1,0 +1,109 @@
+.seller-inventory-page {
+  padding: 1rem;
+}
+
+.page-header {
+  margin-bottom: 1.5rem;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.inventory-summary {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.inventory-stat {
+  flex: 1;
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  min-width: 150px;
+}
+
+.inventory-stat.warning {
+  border: 2px solid #f39c12;
+}
+
+.inventory-stat.error {
+  border: 2px solid #e74c3c;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  display: block;
+  color: #333;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.inventory-section {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.inventory-section h2 {
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.inventory-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.inventory-table-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 2px solid #eee;
+  font-weight: 600;
+  color: #555;
+}
+
+.inventory-table-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+}
+
+.product-name {
+  font-weight: 500;
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  .inventory-table-header,
+  .inventory-table-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .inventory-table-header {
+    display: none;
+  }
+
+  .inventory-summary {
+    flex-direction: column;
+  }
+}

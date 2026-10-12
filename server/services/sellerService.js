@@ -39,7 +39,15 @@ const getSellerDashboard = async (userId) => {
   const lowStockList = await Product.find({
     seller: seller._id,
     $expr: { $lte: ["$stock", "$minimumStock"] },
-  }).sort({ stock: 1 });
+  })
+    .populate("category", "name")
+    .sort({ stock: 1 });
+
+  const recentOrders = await Order.find({ "items.seller": seller._id })
+    .populate("customer", "name email")
+    .populate("items.product")
+    .sort({ createdAt: -1 })
+    .limit(5);
 
   return {
     totalProducts,
@@ -49,6 +57,7 @@ const getSellerDashboard = async (userId) => {
     totalOrders: orders.length,
     pendingOrders,
     totalRevenue,
+    recentOrders,
   };
 };
 

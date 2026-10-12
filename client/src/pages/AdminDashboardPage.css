@@ -1,0 +1,15 @@
+.admin-dashboard {
+  padding: 1rem;
+}
+
+.dashboard-title {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}

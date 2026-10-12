@@ -1,0 +1,52 @@
+.filter-panel {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  height: fit;
+}
+
+.filter-title {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.filter-group {
+  margin-bottom: 1.25rem;
+}
+
+.filter-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.filter-group select,
+.filter-group input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.filter-group select:focus,
+.filter-group input:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.btn-clear {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .filter-panel {
+    height: auto;
+    position: static;
+    top: auto;
+  }
+}

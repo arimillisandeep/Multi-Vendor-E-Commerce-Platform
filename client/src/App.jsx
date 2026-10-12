@@ -1,122 +1,213 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import PublicLayout from "./layouts/PublicLayout";
+import CustomerLayout from "./layouts/CustomerLayout";
+import SellerLayout from "./layouts/SellerLayout";
+import AdminLayout from "./layouts/AdminLayout";
+import ProtectedRoute from "./components/common/ProtectedRoute";
+
+import HomePage from "./pages/HomePage";
+import ProductsPage from "./pages/ProductsPage";
+import ProductDetailsPage from "./pages/ProductDetailsPage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import CartPage from "./pages/CartPage";
+import CheckoutPage from "./pages/CheckoutPage";
+import OrdersPage from "./pages/OrdersPage";
+import OrderDetailsPage from "./pages/OrderDetailsPage";
+import WishlistPage from "./pages/WishlistPage";
+import ProfilePage from "./pages/ProfilePage";
+import SellerDashboardPage from "./pages/SellerDashboardPage";
+import SellerProductsPage from "./pages/SellerProductsPage";
+import AddProductPage from "./pages/AddProductPage";
+import EditProductPage from "./pages/EditProductPage";
+import SellerOrdersPage from "./pages/SellerOrdersPage";
+import SellerInventoryPage from "./pages/SellerInventoryPage";
+import SellerProfilePage from "./pages/SellerProfilePage";
+import AdminDashboardPage from "./pages/AdminDashboardPage";
+import ManageUsersPage from "./pages/ManageUsersPage";
+import ManageSellersPage from "./pages/ManageSellersPage";
+import ManageProductsPage from "./pages/ManageProductsPage";
+import ManageCategoriesPage from "./pages/ManageCategoriesPage";
+import ManageOrdersPage from "./pages/ManageOrdersPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={
+            <PublicLayout>
+              <HomePage />
+            </PublicLayout>
+          } />
+          <Route path="/products" element={
+            <PublicLayout>
+              <ProductsPage />
+            </PublicLayout>
+          } />
+          <Route path="/products/:id" element={
+            <PublicLayout>
+              <ProductDetailsPage />
+            </PublicLayout>
+          } />
+          <Route path="/login" element={
+            <PublicLayout>
+              <LoginPage />
+            </PublicLayout>
+          } />
+          <Route path="/register" element={
+            <PublicLayout>
+              <RegisterPage />
+            </PublicLayout>
+          } />
+          <Route path="/cart" element={
+            <ProtectedRoute allowedRoles={["customer"]}>
+              <CustomerLayout>
+                <CartPage />
+              </CustomerLayout>
+            </ProtectedRoute>
+          } />
+          <Route path="/checkout" element={
+            <ProtectedRoute allowedRoles={["customer"]}>
+              <CustomerLayout>
+                <CheckoutPage />
+              </CustomerLayout>
+            </ProtectedRoute>
+          } />
+          <Route path="/orders" element={
+            <ProtectedRoute allowedRoles={["customer", "seller", "admin"]}>
+              <CustomerLayout>
+                <OrdersPage />
+              </CustomerLayout>
+            </ProtectedRoute>
+          } />
+          <Route path="/orders/:id" element={
+            <ProtectedRoute allowedRoles={["customer", "seller", "admin"]}>
+              <CustomerLayout>
+                <OrderDetailsPage />
+              </CustomerLayout>
+            </ProtectedRoute>
+          } />
+          <Route path="/wishlist" element={
+            <ProtectedRoute allowedRoles={["customer"]}>
+              <CustomerLayout>
+                <WishlistPage />
+              </CustomerLayout>
+            </ProtectedRoute>
+          } />
+          <Route path="/profile" element={
+            <ProtectedRoute allowedRoles={["customer"]}>
+              <CustomerLayout>
+                <ProfilePage />
+              </CustomerLayout>
+            </ProtectedRoute>
+          } />
 
-      <div className="ticks"></div>
+          <Route path="/seller/dashboard" element={
+            <ProtectedRoute allowedRoles={["seller"]}>
+              <SellerLayout>
+                <SellerDashboardPage />
+              </SellerLayout>
+            </ProtectedRoute>
+          } />
+          <Route path="/seller/products" element={
+            <ProtectedRoute allowedRoles={["seller"]}>
+              <SellerLayout>
+                <SellerProductsPage />
+              </SellerLayout>
+            </ProtectedRoute>
+          } />
+          <Route path="/seller/add-product" element={
+            <ProtectedRoute allowedRoles={["seller", "admin"]}>
+              <SellerLayout>
+                <AddProductPage />
+              </SellerLayout>
+            </ProtectedRoute>
+          } />
+          <Route path="/seller/edit-product/:id" element={
+            <ProtectedRoute allowedRoles={["seller", "admin"]}>
+              <SellerLayout>
+                <EditProductPage />
+              </SellerLayout>
+            </ProtectedRoute>
+          } />
+          <Route path="/seller/orders" element={
+            <ProtectedRoute allowedRoles={["seller"]}>
+              <SellerLayout>
+                <SellerOrdersPage />
+              </SellerLayout>
+            </ProtectedRoute>
+          } />
+          <Route path="/seller/inventory" element={
+            <ProtectedRoute allowedRoles={["seller"]}>
+              <SellerLayout>
+                <SellerInventoryPage />
+              </SellerLayout>
+            </ProtectedRoute>
+          } />
+          <Route path="/seller/profile" element={
+            <ProtectedRoute allowedRoles={["seller"]}>
+              <SellerLayout>
+                <SellerProfilePage />
+              </SellerLayout>
+            </ProtectedRoute>
+          } />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+          <Route path="/admin/dashboard" element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <AdminLayout>
+                <AdminDashboardPage />
+              </AdminLayout>
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/users" element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <AdminLayout>
+                <ManageUsersPage />
+              </AdminLayout>
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/sellers" element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <AdminLayout>
+                <ManageSellersPage />
+              </AdminLayout>
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/products" element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <AdminLayout>
+                <ManageProductsPage />
+              </AdminLayout>
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/categories" element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <AdminLayout>
+                <ManageCategoriesPage />
+              </AdminLayout>
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/orders" element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <AdminLayout>
+                <ManageOrdersPage />
+              </AdminLayout>
+            </ProtectedRoute>
+          } />
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+          <Route path="*" element={
+            <PublicLayout>
+              <NotFoundPage />
+            </PublicLayout>
+          } />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+  );
 }
 
-export default App
+export default App;

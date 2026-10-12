@@ -1,0 +1,139 @@
+.order-details-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.order-details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.order-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.order-header-meta {
+  text-align: right;
+}
+
+.order-header-meta p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.order-header-meta p span {
+  color: #999;
+}
+
+.order-section {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.order-section h2 {
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.address-block p {
+  margin: 0.25rem 0;
+  color: #555;
+}
+
+.order-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.order-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.order-item-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.order-item-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.order-item-name {
+  font-weight: 600;
+  margin: 0;
+}
+
+.order-item-seller {
+  font-size: 0.8rem;
+  color: #999;
+  margin: 0;
+}
+
+.order-item-price-qty {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+
+.order-item-total {
+  font-weight: 600;
+}
+
+.order-total-section {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.grand-total {
+  font-weight: 700;
+  font-size: 1.2rem;
+  border-top: 2px solid #333;
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+}
+
+@media (max-width: 600px) {
+  .order-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .order-header-meta {
+    text-align: left;
+  }
+}
