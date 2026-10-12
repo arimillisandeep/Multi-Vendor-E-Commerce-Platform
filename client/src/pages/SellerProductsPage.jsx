@@ -6,7 +6,7 @@ import ProductCard from "../components/product/ProductCard";
 import Loading from "../components/common/Loading";
 import ErrorMessage from "../components/common/ErrorMessage";
 import ProtectedRoute from "../components/common/ProtectedRoute";
-import "./ProductsListPage.css";
+import "./SellerProductsPage.css";
 
 const SellerProductsContent = () => {
   const productsResult = useApi(

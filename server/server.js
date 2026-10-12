@@ -3,7 +3,7 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 const { sendError } = require("./utils/errorHandler");
 
-require("dotenv").config();
+require("dotenv").config({ path: __dirname + "/.env" });
 
 connectDB();
 
