@@ -16,7 +16,7 @@ const registerValidation = [
     .withMessage("Password must be at least 6 characters"),
   body("role")
     .optional()
-    .isIn(["customer", "seller"])
+    .isIn(["customer", "seller", "admin"])
     .withMessage("Invalid role"),
 ];
 

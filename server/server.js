@@ -21,6 +21,24 @@ app.get("/", (req, res) => {
   });
 });
 
+app.get("/api", (req, res) => {
+  res.json({
+    status: "success",
+    message: "Multi-Vendor E-Commerce API",
+    endpoints: {
+      auth: "/api/auth (register, login, me)",
+      products: "/api/products (CRUD, search, filter, sort)",
+      categories: "/api/categories",
+      cart: "/api/cart (add, update, remove)",
+      wishlist: "/api/wishlist",
+      orders: "/api/orders",
+      reviews: "/api/products/:id/reviews",
+      seller: "/api/seller (dashboard, orders, my-products)",
+      admin: "/api/admin (dashboard, users, sellers, products, orders, categories)",
+    },
+  });
+});
+
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/products", require("./routes/productRoutes"));
 app.use("/api/products/:productId/reviews", require("./routes/reviewRoutes"));

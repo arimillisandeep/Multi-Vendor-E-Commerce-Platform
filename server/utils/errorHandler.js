@@ -23,7 +23,7 @@ const sendError = (err, req, res, next) => {
     if (err.name === "TokenExpiredError") err = handleJWTExpiredError();
   }
 
-  const statusCode = err.statusCode || 500;
+  const statusCode = err.statusCode || (err.isOperational ? 400 : 500);
   const message = err.isOperational ? err.message : "Something went wrong";
 
   if (process.env.NODE_ENV === "production") {

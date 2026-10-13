@@ -1,3 +1,5 @@
+const { AppError } = require("../utils/errorHandler");
+
 const User = require("../models/User");
 const Seller = require("../models/Seller");
 const Product = require("../models/Product");
@@ -66,7 +68,7 @@ const updateUserStatus = async (userId, isActive) => {
   ).select("-password");
 
   if (!user) {
-    throw new Error("User not found");
+    throw new AppError("User not found", 404);
   }
 
   return user;
@@ -95,7 +97,7 @@ const getAllOrders = async () => {
 const createCategory = async (name, description) => {
   const existing = await Category.findOne({ name });
   if (existing) {
-    throw new Error("Category already exists");
+    throw new AppError("Category already exists", 400);
   }
 
   const category = await Category.create({ name, description });
@@ -110,7 +112,7 @@ const updateCategory = async (categoryId, name, description) => {
   );
 
   if (!category) {
-    throw new Error("Category not found");
+    throw new AppError("Category not found", 404);
   }
 
   return category;
@@ -119,7 +121,7 @@ const updateCategory = async (categoryId, name, description) => {
 const deleteCategory = async (categoryId) => {
   const category = await Category.findByIdAndDelete(categoryId);
   if (!category) {
-    throw new Error("Category not found");
+    throw new AppError("Category not found", 404);
   }
 
   return { message: "Category deleted successfully" };
